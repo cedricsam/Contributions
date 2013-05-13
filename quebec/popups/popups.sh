@@ -1,6 +1,8 @@
 #!/bin/bash
 
-SLEEPLONG=60
+DIR="/var/bigdata/contribquebec/popups-files"
+
+SLEEPLONG=3600
 COUNT=0
 while read i
 do
@@ -9,8 +11,13 @@ do
     idrech=`echo "$i" | cut -f1`
     an=`echo "$i" | cut -f2`
     fkent=`echo "$i" | cut -f3`
-    FO="${idrech}-${an}-${fkent}.html"
-    if [ `grep "/includes/anti_bot_image/securite.php" ${FO} 2> /dev/null | wc -l` -eq 1 ] || [ `ls ${FO} 2> /dev/null | wc -m` -eq 0 ]
+    FO="${DIR}/${idrech}-${an}-${fkent}.html"
+    if [ "$idrech" == "idrech" ] # skip header row
+    then
+        echo "skip"
+        continue
+    fi
+    if [ `grep "/includes/anti_bot_image/securite.php" ${FO} 2> /dev/null | wc -l` -eq 1 ] || [ ! -s ${FO} ]
     then
 	D1=`date +%N`
 	D2=`date +%N`
@@ -23,11 +30,16 @@ do
 	echo Getting: "${FO}"
 	#echo "http://www.electionsquebec.qc.ca/applications/donateur_popup.php?idrech=${idrech}&an=${an}&fkent=${fkent}&langue=fr"
 	#curl -s ${INF} "http://www.electionsquebec.qc.ca/applications/donateur_popup.php?idrech=${idrech}&an=${an}&fkent=${fkent}&langue=fr" -o "${FO}"
-	curl -s "http://www.electionsquebec.qc.ca/applications/donateur_popup.php?idrech=${idrech}&an=${an}&fkent=${fkent}&langue=fr" -o "${FO}"
+        URL="http://www.electionsquebec.qc.ca/applications/donateur_popup.php?idrech=${idrech}&an=${an}&fkent=${fkent}&langue=fr"
+	curl -s "${URL}" -o "${FO}"
 	if [ `grep "/includes/anti_bot_image/securite.php" ${FO} 2> /dev/null | wc -l` -eq 1 ]
 	then
-	    echo "Anti-bot active! Sleeping ${SLEEPLONG}..."
-	    sleep ${SLEEPLONG}
+            NEXTTIME=`date -u -d"6:00 tomorrow" +%s`
+            NOW=`date +%s`
+            let SLEEPTIME=$NOW-$NEXTTIME
+	    echo "Anti-bot active! Sleeping ${SLEEPTIME} until ${NEXTTIME}"
+	    sleep ${SLEEPTIME}
+            curl -s "${URL}" -o "${FO}"
 	else
 	    sleep 1
 	fi

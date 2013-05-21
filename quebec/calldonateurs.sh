@@ -144,7 +144,7 @@ cat error.${D}.log
 rm error.${D}.log
 rm count.donateurs.${D}.json
 
-# zipper et finir
+# zipper et finir pour dons et donateurs
 zip -qr donateurs-${D}.zip donateurs-out-${D} donateurs-${D} popups-data.${D}.csv
 mv popups-data.${D}.csv donateurs-files
 rm -rf donateurs-out-${D} donateurs-${D}
@@ -184,7 +184,7 @@ rm count.cp.${D}.json
 
 # nettoyer
 zip -q donateurs-${D}.zip geocoding-files.${D}.csv
-rm geocoding-files.${D}.header.csv geocoding-files.${D}.csv
+rm geocoding-files.${D}.header.csv* geocoding-files.${D}.csv*
 mv donateurs-${D}.zip donateurs-archive
 
 # FIN

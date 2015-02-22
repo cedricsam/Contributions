@@ -9,6 +9,7 @@ Canada2 (2015):
         * get_contribqueryid.sh: gets the queryid to make other requests
         * get_contribpages.sh: gets listing pages
         * get_contribreport.sh: gets the important information, the postal code, municipality and province of contributor
+- Make sure to get your own session ID by visiting the elections.ca website and checking your Developer Tools console
 
 Canada (2009-2011):
 - Data source: http://elections.ca/scripts/webpep/fin/welcome.aspx?&lang=e

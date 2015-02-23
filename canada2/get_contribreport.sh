@@ -40,6 +40,7 @@ do
         continue
     fi
     URL="${BASEURL}${LINK}"
+    echo $URL
     curl -b "${COOKIE}" "${URL}" | sed -n '/<fieldset id="addrssinfo2">/,/<\/fieldset>/p' > ${FO}
     if [ ! -s ${FO} ]
     then

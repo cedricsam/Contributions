@@ -42,6 +42,7 @@ do
     then
         continue
     fi
+    echo $i
     curl -b "${COOKIE}" "${BASEURL}${LINK}&reportPage=${i}" | sed -n '/<table id="[cC][^\"]\+" class="DataTable">/,/<\/table>/p' > "${FO}"
     if [ ! -s ${FO} ]
     then

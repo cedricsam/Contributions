@@ -1,5 +1,16 @@
 Contributions Projects
 
+Canada2 (2015):
+- Data source: http://www.elections.ca/WPAPPS/WPF/
+- A new site introduced during summer 2013
+- Depends mostly on cURL
+- In development (only fully supports getting party donations)
+- Scripts:
+        * get_contribqueryid.sh: gets the queryid to make other requests
+        * get_contribpages.sh: gets listing pages
+        * get_contribreport.sh: gets the important information, the postal code, municipality and province of contributor
+- Make sure to get your own session ID by visiting the elections.ca website and checking your Developer Tools console
+
 Canada (2009-2011):
 - Data source: http://elections.ca/scripts/webpep/fin/welcome.aspx?&lang=e
 - Final product (EN): http://www.lapresse.ca/actualites/elections-federales/political-financing-map/

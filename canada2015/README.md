@@ -1,5 +1,7 @@
 # Contribs 2015 (Canada 2015)
 
+* Raw data here: [lapresse.ca/contributions2015](http://lapresse.ca/contributions2015)
+
 This is code with minimal documentation because of time constraints (sorry!).
 
 Basically it's a scraper for the Elections Canada [political donations database](http://elections.ca/WPAPPS/WPF/), rewritten from past incarnations that existed since 2011, notably the last one published [on my GitHub](https://github.com/cedricsam/Contributions/tree/master/canada2) in February 2015. The Elections Canada website changed in summer 2013 and this is the version that these scripts work for. The scraping using these scripts on this particular project was done in about three weeks between the end of July and mid-August 2015, ahead of the October 19, 2015 general election.
